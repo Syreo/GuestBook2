@@ -3,74 +3,68 @@
  */
 package com.catalyst.utils;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 /**
  * @author Hannah
- *
+ * 
  */
 @Component
 public class Response {
 
-	
-	private String success;
-	private String error = "";
-	private Object response;
-	
-	
-	public Response(){
-		
-	}
 
 
-	/**
-	 * @return the success
-	 */
-	public String getSuccess() {
-		return success;
-	}
+  private List<String> errorList;
+  private Object response;
+  private String statusCode;
+
+  public Response() {
+
+  }
 
 
-	/**
-	 * @param success the success to set
-	 */
-	public void setSuccess(String success) {
-		this.success = success;
-	}
+
+  /**
+   * @return the response
+   */
+  public Object getResponse() {
+    return response;
+  }
 
 
-	/**
-	 * @return the error
-	 */
-	public String getError() {
-		return error;
-	}
+  /**
+   * @param response the response to set
+   */
+  public void setResponse(Object response) {
+    this.response = response;
+  }
 
 
-	/**
-	 * @param error the error to set
-	 */
-	public void setError(String error) {
-		this.error = error;
-	}
+
+  public List<String> getErrorList() {
+    return errorList;
+  }
 
 
-	/**
-	 * @return the response
-	 */
-	public Object getResponse() {
-		return response;
-	}
+
+  public void setErrorList(List<String> errorList) {
+    this.errorList = errorList;
+  }
 
 
-	/**
-	 * @param response the response to set
-	 */
-	public void setResponse(Object response) {
-		this.response = response;
-	}
-	
-	
-	
-	
+
+  public String getStatusCode() {
+    return statusCode;
+  }
+
+
+
+  public void setStatusCode(String statusCode) {
+    this.statusCode = statusCode;
+  }
+
+
+
 }

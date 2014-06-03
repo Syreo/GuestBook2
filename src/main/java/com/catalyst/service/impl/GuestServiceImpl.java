@@ -1,5 +1,7 @@
 package com.catalyst.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -20,6 +22,17 @@ public class GuestServiceImpl implements GuestService {
   public void addGuest(User user) {
 
     userDao.persist(user);
+
+  }
+
+  /**
+   * 
+   * @return
+   */
+
+  public List<User> getAllGuests() {
+
+    return userDao.getAllGuests();
 
   }
 

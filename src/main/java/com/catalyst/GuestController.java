@@ -1,14 +1,16 @@
 package com.catalyst;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.catalyst.model.User;
 import com.catalyst.service.GuestService;
+import com.catalyst.utils.Response;
 
 @Controller
 @ManagedBean
@@ -35,7 +37,9 @@ public class GuestController {
   private String email;
 
 
-
+  /**
+   * adds a guest to the database
+   */
   public void addGuest() {
     User user = new User();
     user.setAddress(address);
@@ -44,6 +48,20 @@ public class GuestController {
     user.setQty(qty);
     guestService.addGuest(user);
 
+
+  }
+
+  /**
+   * gets all guests
+   * 
+   * @return
+   */
+  @RequestMapping(value = "/GetAllGuests", produces = "application/json", method = RequestMethod.GET)
+  public Response getAllGuests() {
+
+    Response response = new Response();
+    response.setResponse(guestService.getAllGuests());
+    return response;
 
   }
 
@@ -96,28 +114,20 @@ public class GuestController {
 
 
 
+  /**
+   * @return the guestService
+   */
+  public GuestService getGuestService() {
+    return guestService;
+  }
 
 
 
-
-/**
- * @return the guestService
- */
-public GuestService getGuestService() {
-	return guestService;
-}
-
-
-
-
-
-
-
-/**
- * @param guestService the guestService to set
- */
-public void setGuestService(GuestService guestService) {
-	this.guestService = guestService;
-}
+  /**
+   * @param guestService the guestService to set
+   */
+  public void setGuestService(GuestService guestService) {
+    this.guestService = guestService;
+  }
 
 }
