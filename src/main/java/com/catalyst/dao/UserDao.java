@@ -7,7 +7,7 @@ import com.catalyst.model.User;
 public interface UserDao {
 
 
-  void persist(User user);
+  boolean persist(User user);
 
 
 }

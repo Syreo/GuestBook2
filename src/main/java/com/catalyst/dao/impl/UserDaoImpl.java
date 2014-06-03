@@ -12,29 +12,34 @@ import com.catalyst.model.User;
 @Repository("userDao")
 public class UserDaoImpl implements UserDao {
 
-  @PersistenceContext(unitName = "GuestBookPU")
-  private EntityManager em;
+	@PersistenceContext(unitName = "GuestBookPU")
+	private EntityManager em;
 
+	/**
+	 * sets the entity manager
+	 * 
+	 * @param em
+	 */
+	public void setEm(EntityManager em) {
+		this.em = em;
+	}
 
-  /**
-   * sets the entity manager
-   * 
-   * @param em
-   */
-  public void setEm(EntityManager em) {
-    this.em = em;
-  }
+	/**
+	 * persists a user
+	 * 
+	 * @param user
+	 */
+	@Transactional
+	public boolean persist(User user) {
+		boolean isSuccessful = true;
+		try {
+			em.persist(user);
 
-  /**
-   * persists a user
-   * 
-   * @param user
-   */
-  @Transactional
-  public void persist(User user) {
-    em.persist(user);
-  }
+		} catch (Exception e) {
+			isSuccessful = false;
 
-
+		}
+		return isSuccessful;
+	}
 
 }

@@ -1,21 +1,22 @@
-package com.stoneapple.boilerplate.web.controller;
+package com.catalyst;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
-import com.catalyst.dao.UserDao;
 import com.catalyst.model.User;
+import com.catalyst.service.GuestService;
 
-@Component
-@ViewScoped
+@Controller
 @ManagedBean
+@Scope("request")
 public class GuestController {
 
   @Autowired
-  private UserDao userDao;
+  private GuestService guestService;
 
   // @ManagedProperty(value = "#{person}")
   // private Person person;
@@ -41,23 +42,10 @@ public class GuestController {
     user.setEmail(email);
     user.setName(name);
     user.setQty(qty);
-    userDao.persist(user);
+    guestService.addGuest(user);
 
 
   }
-
-
-
-  public UserDao getUserDao() {
-    return userDao;
-  }
-
-
-
-  public void setUserDao(UserDao userDao) {
-    this.userDao = userDao;
-  }
-
 
 
   public String getName() {
@@ -105,5 +93,31 @@ public class GuestController {
   public void setEmail(String email) {
     this.email = email;
   }
+
+
+
+
+
+
+
+/**
+ * @return the guestService
+ */
+public GuestService getGuestService() {
+	return guestService;
+}
+
+
+
+
+
+
+
+/**
+ * @param guestService the guestService to set
+ */
+public void setGuestService(GuestService guestService) {
+	this.guestService = guestService;
+}
 
 }

@@ -1,4 +1,4 @@
-package com.stoneapple.boilerplate.utils;
+package com.catalyst.utils;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
