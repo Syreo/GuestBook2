@@ -22,9 +22,9 @@
             },  
             selectionMode: 'multiple',  
             rowSelect: function(event, data) {  
-                $('#messages').puigrowl('show', [{severity:'info', summary: 'Row Selected', detail: (data.brand + ' ' + data.vin)}]);  
+                $('#messages').puigrowl('show', [{severity:'info', summary: 'Row Selected', detail: (data.response.name + ' ' + data.response.email)}]);  
             },  
             rowUnselect: function(event, data) {  
-                $('#messages').puigrowl('show', [{severity:'info', summary: 'Row Unselected', detail: (data.brand + ' ' + data.vin)}]);  
+                $('#messages').puigrowl('show', [{severity:'info', summary: 'Row Unselected', detail: (data.response.name + ' ' + data.response.email)}]);  
             }  
         }); 
