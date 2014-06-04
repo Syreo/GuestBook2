@@ -3,20 +3,47 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"   
        xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"> 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"> 
     <h:head>
-        <h:outputStylesheet library="css" name="table-style.css"  />
-
-	<h:outputScript library="default" name="WebContent/resources/default/1_0/js/guestList.js" />
+	<h:outputScript library="primefaces" name="jquery/jquery.js" />
+	<h:outputScript library="js" name="guestList.js" />
     </h:head>
     <h:body>
 
         <h1>GuestBook TEST</h1>
         
-       <p>
-       <div id="messages"></div>  
-      <div id="tblremoteeager"></div>  
-    </p>
+       <p:dataTable var="user" value="#{guestController.getAllGuests()}"> 
+
+                            <f:facet name="header"> Guest  </f:facet>
+
+                            <p:column headerText="Name" style="width:15%">
+                                <h:outputText class = "#{user.id}" value="#{user.name}" />
+                            </p:column>
+
+                            <p:column headerText="Email" style="width:15%">
+                                <h:outputText class = "#{user.id}"  value="#{user.email}" />
+                            </p:column>
+
+                            <p:column headerText="Address" style="width:15%">
+                                <h:outputText class = "#{user.id}" value="#{user.address}" />
+                            </p:column>
+                            
+                            <p:column headerText="Quantity" style="width:15%">
+                                <h:outputText class = "#{user.id}" value="#{user.qty}" />
+                           
+                            </p:column>
+                            
+                            <p:column headerText="Edit/Delete" style="width:15%">
+                                <p:button class = "#{user.id}" value = "Edit"  onclick="editGuest()"/>
+                                
+                                <p:button class = "#{user.id}" value = "Delete" />
+                            	
+                           
+                           
+                            </p:column>
+                            
+          </p:dataTable>
     </h:body>
 
 </html>

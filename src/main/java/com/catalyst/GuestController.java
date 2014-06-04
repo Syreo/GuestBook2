@@ -1,16 +1,16 @@
 package com.catalyst;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.catalyst.model.User;
 import com.catalyst.service.GuestService;
-import com.catalyst.utils.Response;
 
 @Controller
 @ManagedBean
@@ -30,7 +30,7 @@ public class GuestController {
   // user = new User();
   // }
 
-
+  List<User> guestList;
   private String name;
   private String address;
   private String qty;
@@ -56,12 +56,14 @@ public class GuestController {
    * 
    * @return
    */
-  @RequestMapping(value = "/GetAllGuests", produces = "application/json", method = RequestMethod.GET)
-  public Response getAllGuests() {
-
-    Response response = new Response();
-    response.setResponse(guestService.getAllGuests());
-    return response;
+  // @RequestMapping(value = "/GetAllGuests", produces = "application/json", method =
+  // RequestMethod.GET)
+  public List<User> getAllGuests() {
+    guestList = new ArrayList<User>();
+    guestList = guestService.getAllGuests();
+    // Response response = new Response();
+    // response.setResponse();
+    return guestList;
 
   }
 
@@ -128,6 +130,14 @@ public class GuestController {
    */
   public void setGuestService(GuestService guestService) {
     this.guestService = guestService;
+  }
+
+  public List<User> getGuestList() {
+    return guestList;
+  }
+
+  public void setGuestList(List<User> guestList) {
+    this.guestList = guestList;
   }
 
 }

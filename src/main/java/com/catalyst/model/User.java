@@ -9,9 +9,10 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@NamedQueries({@NamedQuery(name = "getAllGuests", query = "SELECT g FROM Guest g")})
+
 @Entity
 @Table(name = "guest_roster")
+@NamedQueries({@NamedQuery(name = "getAllGuests", query = "SELECT u FROM User u")})
 public class User {
 
 
