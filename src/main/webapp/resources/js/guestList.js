@@ -1,9 +1,18 @@
-
-	function editGuest(event){
-		alert("EDIT!");
-		console.log(this);
-		 event.preventDefault();
-	}
+//$ = jQuery;
+	
+	
+//	(function($){
+//		function editGuest(id){
+			
+			$('#editButton').click(function(){
+				
+				alert("test");
+				
+			});
+			
+//		});
+	 
+//	})(jQuery);
 	
 	
 	

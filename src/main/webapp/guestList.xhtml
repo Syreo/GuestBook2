@@ -35,7 +35,7 @@
                             </p:column>
                             
                             <p:column headerText="Edit/Delete" style="width:15%">
-                                <p:button class = "#{user.id}" value = "Edit"  onclick="editGuest()"/>
+                                <p:button class = "#{user.id}" id="editButton" value = "Edit"  onclick="editGuest(#{user.id})"/>
                                 
                                 <p:button class = "#{user.id}" value = "Delete" />
                             	
