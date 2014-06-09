@@ -1,49 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"   
-       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"> 
-    <h:head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
 	<h:outputScript library="primefaces" name="jquery/jquery.js" />
 	<h:outputScript library="js" name="guestList.js" />
-    </h:head>
-    <h:body>
+</h:head>
+<h:body>
 
-        <h1>GuestBook TEST</h1>
-        
-       <p:dataTable var="user" value="#{guestController.getAllGuests()}"> 
+	<h1 style="text-align:center">Guest List</h1><br></br>
+	<h:form id="form" style="width:75%; margin: 0 auto;">
+	 <p:growl id="msgs" showDetail="true"/>
+		<p:dataTable editable="true" value="#{guestController.getAllGuests()}" var="guest"
+		rows="10"
+        paginator="true"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,15"
+		>
+			<f:facet name="Header">Guest List</f:facet>
+			
+			<p:ajax event="rowEdit" listener="#{guestController.updateGuest}" update=":form:msgs" />
 
-                            <f:facet name="header"> Guest  </f:facet>
+			
+			<p:column headerText="Name" style="width:150px">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{guest.name}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{guest.name}" style="width:60%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
 
-                            <p:column headerText="Name" style="width:15%">
-                                <h:outputText class = "#{user.id}" value="#{user.name}" />
-                            </p:column>
+			<p:column headerText="Email" style="width:150px">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{guest.email}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{guest.email}" style="width:60%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
 
-                            <p:column headerText="Email" style="width:15%">
-                                <h:outputText class = "#{user.id}"  value="#{user.email}" />
-                            </p:column>
+			<p:column headerText="Address" style="width:150px">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{guest.address}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{guest.address}" style="width:60%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
 
-                            <p:column headerText="Address" style="width:15%">
-                                <h:outputText class = "#{user.id}" value="#{user.address}" />
-                            </p:column>
-                            
-                            <p:column headerText="Quantity" style="width:15%">
-                                <h:outputText class = "#{user.id}" value="#{user.qty}" />
-                           
-                            </p:column>
-                            
-                            <p:column headerText="Edit/Delete" style="width:15%">
-                                <p:button class = "#{user.id}" id="editButton" value = "Edit"  onclick="editGuest(#{user.id})"/>
-                                
-                                <p:button class = "#{user.id}" value = "Delete" />
-                            	
-                           
-                           
-                            </p:column>
-                            
-          </p:dataTable>
-    </h:body>
+			<p:column headerText="# of Attendees" style="width:150px">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{guest.qty}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{guest.qty}" style="width:60%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="Options" style="width:10%">
+				<p:rowEditor style="display:inline" />
+				<p:commandButton style="display:inline" icon="ui-icon-close" title="Delete Guest"
+                       actionListener="#{guestController.deleteGuest(guest)}" ajax = "false" update=":form" />
+			</p:column>
+
+
+		</p:dataTable>
+		<p:commandButton style="margin: 0 auto; margin-top:10px"
+							value="Back" action="index" />
+
+
+	</h:form>
+</h:body>
 
 </html>

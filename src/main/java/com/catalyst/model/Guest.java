@@ -8,12 +8,18 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 
 @Entity
 @Table(name = "guest_roster")
-@NamedQueries({@NamedQuery(name = "getAllGuests", query = "SELECT u FROM User u")})
-public class User {
+@NamedQueries({@NamedQuery(name = "getAllGuests", query = "SELECT g FROM Guest g"),
+@NamedQuery(name = "getGuestById", query = "SELECT g FROM Guest g WHERE g.id = :id"),
+@NamedQuery(name = "deleteGuestById", query = "DELETE FROM Guest g WHERE g.id = :id"),
+
+
+})
+public class Guest {
 
 
   @Id
@@ -22,11 +28,22 @@ public class User {
   @Column(name = "guest_name")
   private String name;
   @Column(name = "guest_email")
-  private String email;
+  private String email; 
   @Column(name = "guest_address")
   private String address;
   @Column(name = "guest_quantity")
   private String qty;
+  
+  private Integer version;
+  
+  @Version
+  @Column(name="VERSION")
+  public Integer getVersion() {
+
+		return version;
+	}
+
+  public void setVersion(Integer version){ this.version = version;}
 
   public int getId() {
     return id;
@@ -80,4 +97,5 @@ public class User {
   public void setQty(String qty) {
     this.qty = qty;
   }
+
 }

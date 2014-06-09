@@ -1,31 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"   
-       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"> 
-    <h:head>
-        <h:outputStylesheet library="css" name="table-style.css"  />
-    </h:head>
-    <h:body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	
+	<h:outputScript library="primefaces" name="jquery/jquery.js" />
+	<h:outputScript library="js" name="guestList.js" />
+</h:head>
+<h:body>
 
-        <h1>GuestBook TEST</h1>
-        <h:link value="Guest List Page" outcome="guestList" />
-       <p>
-       <h:form>
-      <h:panelGrid  id="panel" columns="2" >
-        Name: <h:inputText required="true" value="#{guestController.name}" label="Firstname" /><br/>
-        Email: <h:inputText required="true"  value="#{guestController.email}" label="Secondname" /><br/>
-        Address: <h:inputText required="true"  value="#{guestController.address}" label="Address" /><br/>
-        Quantity: <h:inputText required="true"  value="#{guestController.qty}" label="Quantity" /><br/>
-        <f:facet name="footer">
-          <h:panelGroup style="display:block; text-align:center">
-            <h:commandButton action="#{guestController.addGuest}" value="Go.." />
-          </h:panelGroup>
-        </f:facet>  
-      </h:panelGrid>
-      </h:form>
-    </p>
-    </h:body>
+	<h1 style="text-align: center">Add a Guest</h1>
+
+	<p>
+		<h:form id="form" style="width:20%; margin: 0 auto;">
+			<p:panelGrid id="panel" columns="2">
+        Name: <h:inputText id="name" required="true"
+					value="#{guestController.name}" label="Name" />
+				<br />
+        Email: <h:inputText required="true"
+					value="#{guestController.email}" label="Email" />
+				<br />
+        Address: <h:inputText required="true"
+					value="#{guestController.address}" label="Address" />
+				<br />
+        # of Attendees: <h:inputText required="true"
+					value="#{guestController.qty}" label="Quantity" />
+				<br />
+				<f:facet name="footer">
+					<h:panelGroup style="display:block; text-align:center">
+						<p:commandButton action="#{guestController.addGuest}" value="Add" />
+						<br></br>
+<!-- 						<p:commandButton id="resetFields" value="Reset" action="{guestController.resetGuest()}" update="@panel" ajax="false"/> -->
+							
+				
+						<p:commandButton style="margin: 0 auto; margin-top:10px"
+							value="Guest List" action="guestList" />
+					</h:panelGroup>
+				</f:facet>
+			</p:panelGrid>
+		</h:form>
+	</p>
+</h:body>
 
 </html>

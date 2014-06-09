@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.catalyst.dao.UserDao;
-import com.catalyst.model.User;
+import com.catalyst.dao.GuestDao;
+import com.catalyst.model.Guest;
 import com.catalyst.service.GuestService;
 
 @Service("guestService")
@@ -17,12 +17,13 @@ public class GuestServiceImpl implements GuestService {
 
 
   @Autowired
-  private UserDao userDao;
+  private GuestDao guestDao;
 
-  public void addGuest(User user) {
+  public String addGuest(Guest guest) {
 
-    userDao.persist(user);
+    String response = guestDao.persist(guest);
 
+    return response;
   }
 
   /**
@@ -30,10 +31,23 @@ public class GuestServiceImpl implements GuestService {
    * @return
    */
 
-  public List<User> getAllGuests() {
+  public List<Guest> getAllGuests() {
 
-    return userDao.getAllGuests();
+    return guestDao.getAllGuests();
 
+  }
+  
+  public String updateGuest(Guest guest){
+	  
+	  String response = guestDao.updateGuest(guest);
+	  
+	return response;
+  }
+  
+  
+  public String deleteGuest(Guest guest){
+	  String response = guestDao.deleteGuest(guest);
+	  return response;
   }
 
 }

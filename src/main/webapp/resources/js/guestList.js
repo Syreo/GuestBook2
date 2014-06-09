@@ -1,22 +1,9 @@
-//$ = jQuery;
-	
-	
-//	(function($){
-//		function editGuest(id){
-			
-			$('#editButton').click(function(){
-				
-				alert("test");
-				
-			});
-			
-//		});
-	 
-//	})(jQuery);
-	
-	
-	
-	
-	
 
-
+	
+	function reset(){
+		alert("click");
+	}
+	
+	
+	
+	
